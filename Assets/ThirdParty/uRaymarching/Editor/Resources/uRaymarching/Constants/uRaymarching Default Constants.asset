@@ -13,4 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   values:
   - name: RaymarchingShaderDirectory
-    value: Assets/ThridParty/uRaymarching/Assets/uRaymarching/Shaders/Include
+    value: Assets/uRaymarching/Shaders/Include

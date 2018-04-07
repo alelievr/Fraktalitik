@@ -18,7 +18,7 @@ MonoBehaviour:
   - key: Name
     value: ModWorld
   - key: RaymarchingShaderDirectory
-    value: Assets/ThirdParty/uRaymarching/uRaymarching/Shaders/Include
+    value: Assets/ThirdParty/uRaymarching/Shaders/Include
   - key: Culling
     value: Off
   conditions:

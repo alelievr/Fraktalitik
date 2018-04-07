@@ -18,12 +18,12 @@ MonoBehaviour:
   - key: Name
     value: SphereBoxMorph
   - key: Culling
-    value: Back
+    value: Off
   - key: RaymarchingShaderDirectory
     value: Assets/ThirdParty/uRaymarching/Shaders/Include
   conditions:
   - key: ShadowCaster
-    value: 1
+    value: 0
   - key: FollowObjectScale
     value: 0
   - key: DoNotOutputDepth
@@ -39,7 +39,8 @@ MonoBehaviour:
     value: // _Color2("Color2", Color) = (1.0, 1.0, 1.0, 1.0)
     folded: 0
   - key: DistanceFunction
-    value: "inline float DistanceFunction(float3 pos)\n{\n    return Sphere(pos, 1.0);\n}"
+    value: "inline float DistanceFunction(float3 pos)\n{\n    return length(pos) -
+      0.\x122;\n}"
     folded: 1
   - key: PostEffect
     value: 'inline void PostEffect(RaymarchInfo ray, inout PostEffectOutput o)
@@ -50,7 +51,7 @@ MonoBehaviour:
     folded: 0
   constants: {fileID: 11400000, guid: 4df15a420345e4af98645ddd9620aa5b, type: 2}
   basicFolded: 1
-  conditionsFolded: 0
+  conditionsFolded: 1
   variablesFolded: 0
-  materialsFolded: 0
+  materialsFolded: 1
   constantsFolded: 1

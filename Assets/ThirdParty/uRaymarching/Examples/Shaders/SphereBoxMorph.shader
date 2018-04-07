@@ -11,9 +11,6 @@ Properties
     [Header(Raymarching Settings)]
     _Loop("Loop", Range(1, 100)) = 30
     _MinDistance("Minimum Distance", Range(0.001, 0.1)) = 0.01
-    _ShadowLoop("Shadow Loop", Range(1, 100)) = 10
-    _ShadowMinDistance("Shadow Minimum Distance", Range(0.001, 0.1)) = 0.01
-    _ShadowExtraBias("Shadow Extra Bias", Range(0.0, 1.0)) = 0.01
 
 // @block Properties
 // _Color2("Color2", Color) = (1.0, 1.0, 1.0, 1.0)
@@ -29,7 +26,7 @@ Tags
     "DisableBatching" = "True"
 }
 
-Cull Back
+Cull Off
 
 CGINCLUDE
 
@@ -45,7 +42,7 @@ CGINCLUDE
 // @block DistanceFunction
 inline float DistanceFunction(float3 pos)
 {
-    return Sphere(pos, 1.0);
+    return length(pos) - 0.2;
 }
 // @endblock
 
@@ -78,21 +75,6 @@ Pass
     #pragma exclude_renderers nomrt
     #pragma multi_compile_prepassfinal
     #pragma multi_compile ___ UNITY_HDR_ON
-    #pragma multi_compile OBJECT_SHAPE_CUBE OBJECT_SHAPE_SPHERE ___
-    ENDCG
-}
-
-Pass
-{
-    Tags { "LightMode" = "ShadowCaster" }
-
-    CGPROGRAM
-    #include "Assets/ThirdParty/uRaymarching/Shaders/Include/VertFragShadowObject.cginc"
-    #pragma target 3.0
-    #pragma vertex Vert
-    #pragma fragment Frag
-    #pragma fragmentoption ARB_precision_hint_fastest
-    #pragma multi_compile_shadowcaster
     #pragma multi_compile OBJECT_SHAPE_CUBE OBJECT_SHAPE_SPHERE ___
     ENDCG
 }

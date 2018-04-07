@@ -18,7 +18,7 @@ MonoBehaviour:
   - key: Name
     value: HexFloor
   - key: RaymarchingShaderDirectory
-    value: Assets/ThirdParty/uRaymarching/uRaymarching/Shaders/Include
+    value: Assets/ThirdParty/uRaymarching/Shaders/Include
   - key: Fuga
     value: aaaa
   - key: Piyo
