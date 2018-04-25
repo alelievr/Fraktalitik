@@ -40,7 +40,7 @@ MonoBehaviour:
     folded: 0
   - key: DistanceFunction
     value: "inline float DistanceFunction(float3 pos)\n{\n    return Sphere(pos, 0.5);\n}"
-    folded: 0
+    folded: 1
   - key: PostEffect
     value: 'inline void PostEffect(RaymarchInfo ray, inout PostEffectOutput o)
 
