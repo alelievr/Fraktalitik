@@ -96,7 +96,7 @@ PlayerSettings:
   xboxEnableHeadOrientation: 0
   xboxEnableGuest: 0
   xboxEnablePIXSampling: 0
-  metalFramebufferOnly: 1
+  metalFramebufferOnly: 0
   n3dsDisableStereoscopicView: 0
   n3dsEnableSharedListOpt: 1
   n3dsEnableVSync: 0
@@ -228,6 +228,8 @@ PlayerSettings:
   appleDeveloperTeamID: 
   iOSManualSigningProvisioningProfileID: 
   tvOSManualSigningProvisioningProfileID: 
+  iOSManualSigningProvisioningProfileType: 0
+  tvOSManualSigningProvisioningProfileType: 0
   appleEnableAutomaticSigning: 0
   iOSRequireARKit: 0
   appleEnableProMotion: 0
@@ -554,8 +556,9 @@ PlayerSettings:
   incrementalIl2cppBuild: {}
   allowUnsafeCode: 0
   additionalIl2CppArgs: 
-  scriptingRuntimeVersion: 1
-  apiCompatibilityLevelPerPlatform: {}
+  scriptingRuntimeVersion: 0
+  apiCompatibilityLevelPerPlatform:
+    Standalone: 6
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: Fraktalitik
