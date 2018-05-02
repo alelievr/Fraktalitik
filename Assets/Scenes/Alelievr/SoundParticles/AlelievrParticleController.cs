@@ -36,10 +36,8 @@ public class AlelievrParticleController : MonoBehaviour
 	{
 		if (throttle > .5f)
 			particleSystem.Emit((int)(throttle * 10));
-	/*	var strength = noise.strength;
-		var scrollSpeed = noise.scrollSpeed;
 
-		strength = throttle * originalStrength;
-		scrollSpeed = throttle;*/
+		noise.strength = throttle * originalStrength;
+		noise.scrollSpeed = throttle;
 	}
 }
