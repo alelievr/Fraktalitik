@@ -45,6 +45,8 @@ namespace Klak.Audio
         [SerializeField, Outlet]
         FloatEvent _outputEvent = new FloatEvent();
 
+        FloatEvent _outputPeak = new FloatEvent();
+
         #endregion
 
         #region Public properties
@@ -147,6 +149,8 @@ namespace Klak.Audio
 
             // Output
             _outputEvent.Invoke(_amplitude);
+
+            _outputPeak.Invoke(Lasp.AudioInput.GetPeakLevelDecibel(_filterType));
         }
 
         #endregion

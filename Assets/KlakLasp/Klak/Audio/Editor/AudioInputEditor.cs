@@ -14,6 +14,7 @@ namespace Klak.Audio
         SerializedProperty _holdAndFallDown;
         SerializedProperty _fallDownSpeed;
         SerializedProperty _outputEvent;
+        SerializedProperty _outputPeak;
 
         static GUIContent _labelAutoGain = new GUIContent("Auto Gain Control");
         static GUIContent _labelDynamicRange = new GUIContent("Dynamic Range");
@@ -30,6 +31,7 @@ namespace Klak.Audio
             _holdAndFallDown = serializedObject.FindProperty("_holdAndFallDown");
             _fallDownSpeed = serializedObject.FindProperty("_fallDownSpeed");
             _outputEvent = serializedObject.FindProperty("_outputEvent");
+            _outputPeak = serializedObject.FindProperty("_outputPeak");
         }
 
         public override bool RequiresConstantRepaint()
@@ -80,6 +82,8 @@ namespace Klak.Audio
             EditorGUILayout.Space();
 
             EditorGUILayout.PropertyField(_outputEvent);
+            
+            EditorGUILayout.PropertyField(_outputPeak);
 
             serializedObject.ApplyModifiedProperties();
         }

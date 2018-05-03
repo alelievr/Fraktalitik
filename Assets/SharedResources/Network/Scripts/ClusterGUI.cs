@@ -18,7 +18,7 @@ public class ClusterGUI : MonoBehaviour
 
 	void Start ()
 	{
-		int		width = Cluster.clusterIPMap.GetLength(0);
+		/*int		width = Cluster.clusterIPMap.GetLength(0);
 		int		hieght = Cluster.clusterIPMap.GetLength(1);
 		
 		foreach (var ipPart in Cluster.clusterIPMap)
@@ -29,7 +29,7 @@ public class ClusterGUI : MonoBehaviour
 			imacGUI.SetText(ipPart);
 
 			clusterImacs.Add(imacGUI);
-		}
+		}*/
 		
 	}
 	

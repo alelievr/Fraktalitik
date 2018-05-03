@@ -7,7 +7,6 @@ public class MasterServer : MonoBehaviour
 {
 	void Start ()
 	{
-		
 	}
 	
 	void Update ()

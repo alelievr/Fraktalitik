@@ -4770,7 +4770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a319229719231eb42a0f578b8f339e1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wiringNodePosition: {x: -900, y: -1032}
+  _wiringNodePosition: {x: -564, y: -768}
   _target: {fileID: 2104273062}
   _propertyName: throttle
 --- !u!1 &695461319
@@ -4813,7 +4813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a319229719231eb42a0f578b8f339e1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wiringNodePosition: {x: -900, y: -972}
+  _wiringNodePosition: {x: -564, y: -708}
   _target: {fileID: 934718099}
   _propertyName: throttle
 --- !u!1 &819930169
@@ -9617,7 +9617,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &934718099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9629,6 +9629,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373c72d55db484d5893317f7ff530c75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controllerType: 1
+  smoothTime: 0.5
+  maxSpeed: 5
+  multiplier: 2
 --- !u!199 &934718100
 ParticleSystemRenderer:
   serializedVersion: 5
@@ -14236,7 +14240,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 934718098}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -13.98, z: 0}
+  m_LocalPosition: {x: 0, y: -18.56, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 832763857}
@@ -14424,10 +14428,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 097e1f4768de3d742bdcdf8e449a5b3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wiringNodePosition: {x: -1116, y: -1020}
+  _wiringNodePosition: {x: -780, y: -756}
   _filterType: 3
   _autoGain: 0
-  _internalGain: 16.66
+  _internalGain: 25
   _dynamicRange: 12.14
   _holdAndFallDown: 1
   _fallDownSpeed: 0.3
@@ -14584,7 +14588,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2104273062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14596,6 +14600,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373c72d55db484d5893317f7ff530c75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controllerType: 0
+  smoothTime: 0.5
+  maxSpeed: 5
+  multiplier: 2
 --- !u!199 &2104273063
 ParticleSystemRenderer:
   serializedVersion: 5
@@ -14783,9 +14791,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startSpeed:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 10
-      minScalar: 5
+      minScalar: 7
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -14836,26 +14844,26 @@ ParticleSystem:
         m_RotationOrder: 4
     startColor:
       serializedVersion: 2
-      minMaxState: 3
+      minMaxState: 4
       minColor: {r: 1, g: 1, b: 1, a: 1}
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.89599895, g: 0, b: 1, a: 1}
-        key1: {r: 0.19425917, g: 0, b: 1, a: 1}
-        key2: {r: 0, g: 0, b: 0, a: 0}
-        key3: {r: 0, g: 0, b: 0, a: 0}
-        key4: {r: 0, g: 0, b: 0, a: 0}
-        key5: {r: 0, g: 0, b: 0, a: 0}
-        key6: {r: 0, g: 0, b: 0, a: 0}
+        key0: {r: 0.6764121, g: 0, b: 1, a: 1}
+        key1: {r: 1, g: 0.51526874, b: 0, a: 1}
+        key2: {r: 1, g: 0, b: 0.83183813, a: 0}
+        key3: {r: 0, g: 1, b: 0.013520718, a: 0}
+        key4: {r: 0, g: 1, b: 0.896049, a: 0}
+        key5: {r: 0, g: 0.07986283, b: 1, a: 0}
+        key6: {r: 0, g: 0.07986283, b: 1, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
-        ctime1: 65535
-        ctime2: 0
-        ctime3: 0
-        ctime4: 0
-        ctime5: 0
-        ctime6: 0
+        ctime1: 10216
+        ctime2: 21781
+        ctime3: 42791
+        ctime4: 52235
+        ctime5: 64186
+        ctime6: 64186
         ctime7: 0
         atime0: 0
         atime1: 65535
@@ -14866,7 +14874,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_NumColorKeys: 2
+        m_NumColorKeys: 6
         m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
@@ -14899,9 +14907,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     startSize:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 1
-      minScalar: 1
+      minMaxState: 3
+      scalar: 1.5
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -14952,7 +14960,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -15005,7 +15013,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -15216,7 +15224,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 10000
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -15304,7 +15312,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 12.430822
+      value: 32.77948
       mode: 0
       spread: 0
       speed:
@@ -15423,7 +15431,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 300
+      scalar: 400
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -17122,7 +17130,7 @@ ParticleSystem:
     strength:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 6
+      scalar: 5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -17228,7 +17236,7 @@ ParticleSystem:
     strengthZ:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -17279,16 +17287,16 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     separateAxes: 0
-    frequency: 0.3
+    frequency: 0.05
     damping: 1
-    octaves: 1
+    octaves: 2
     octaveMultiplier: 0.5
     octaveScale: 2
     quality: 2
     scrollSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 2
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -18511,7 +18519,7 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 1
+          value: 0.6487961
           inSlope: -1
           outSlope: -1
           tangentMode: 0
@@ -18521,11 +18529,11 @@ ParticleSystem:
         - serializedVersion: 3
           time: 1
           value: 0
-          inSlope: -1
-          outSlope: -1
+          inSlope: -0.28789136
+          outSlope: -0.28789136
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0
+          inWeight: 0.12405473
           outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
