@@ -14,13 +14,13 @@ public class ClusterGUI : MonoBehaviour
 		{ClientStatus.Disconnected, Colors.red2},
 		{ClientStatus.WaitingForGroup, Colors.orange},
 		{ClientStatus.ConnectedToGroup, Colors.green2},
+		{ClientStatus.GroupServer, Colors.purple1},
 	};
+
+	Dictionary< string, ClusterIMacGUI >	iMacs = new Dictionary< string, ClusterIMacGUI >();
 
 	void Start ()
 	{
-		int		width = Cluster.clusterIPMap.GetLength(0);
-		int		hieght = Cluster.clusterIPMap.GetLength(1);
-		
 		foreach (var iMac in Cluster.GetImacInfos())
 		{
 			var go = GameObject.Instantiate(clusterSeatPrefab, transform);
@@ -31,7 +31,18 @@ public class ClusterGUI : MonoBehaviour
 			go.transform.position = iMac.worldPosition;
 
 			clusterImacs.Add(imacGUI);
+			iMacs[iMac.ip] = imacGUI;
 		}
+
+		StaticBatchingUtility.Combine(gameObject);
+	}
+
+	public void UpdateImacStatus(string ip, ClientStatus status)
+	{
+		if (!iMacs.ContainsKey(ip))
+			return ;
+		
+		iMacs[ip].SetBorderColor(clientStatusColors[status]);
 	}
 	
 	void Update ()

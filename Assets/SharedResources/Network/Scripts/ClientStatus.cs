@@ -8,4 +8,5 @@ public enum ClientStatus
 	Disconnected,
 	ConnectedToGroup,
 	WaitingForGroup,
+	GroupServer,
 }

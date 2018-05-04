@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Alelievr/SoundParticles/SoundParticles.unity
     guid: e2462b8918d874769bc16079d0588268
+  - enabled: 1
+    path: Assets/SharedResources/Network/Scenes/NetworkMasterServer.unity
+    guid: ce4d72fe1aa6142a69508ae2474cb4ab
   m_configObjects: {}
