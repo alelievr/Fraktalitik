@@ -1,17 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class ClusterIMacGUI : MonoBehaviour
 {
-	public Image		border;
-	public Image		group;
-	public Text			imacName;
+	public MeshRenderer	status;
+	public MeshRenderer	group;
+	public TMP_Text		imacName;
 
 	void Start ()
 	{
-		
+		//Create a new instance of the material renderers so changing it's color wont affect the real mtaerial
+		status.sharedMaterial = status.material;
+		group.sharedMaterial = group.material;
 	}
 	
 	void Update ()
@@ -21,12 +23,12 @@ public class ClusterIMacGUI : MonoBehaviour
 
 	public void SetBorderColor(Color c)
 	{
-		border.color = c;
+		status.sharedMaterial.color = c;
 	}
 
 	public void SetGroupColor(Color c)
 	{
-		group.color = c;
+		group.sharedMaterial.color = c;
 	}
 
 	public void SetText(string text)
@@ -36,8 +38,8 @@ public class ClusterIMacGUI : MonoBehaviour
 
 	public void SetBlank()
 	{
-		border.color = Colors.transparent;
-		group.color = Colors.transparent;
+		status.sharedMaterial.color = Colors.transparent;
+		group.sharedMaterial.color = Colors.transparent;
 		imacName.text = "";
 	}
 }

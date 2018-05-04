@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Cluster : MonoBehaviour 
 {
+	public static string	clusterNumber = "1";
 	public static string	noImac = "--.--";
 
 	public static string[,] clusterIPMap = {
@@ -22,11 +23,53 @@ public class Cluster : MonoBehaviour
 		{"01.01", "01.02", "01.03", "01.04", "01.05", "01.06", "01.07", "--.--", "--.--", "--.--", "--.--", "--.--", "--.--", "--.--", "--.--", "--.--", "--.--", "--.--", "01.08", "01.09", "01.10", "01.11", "01.12", "01.13", "01.14"}, //r1
 	};
 
+	public static IEnumerable< IMacInfo > GetImacInfos()
+	{
+		int		width = Cluster.clusterIPMap.GetLength(1);
+		int		row = 13;
+		int		seat = 1;
+		int		cSeat = 0;
+
+		foreach (var ipPart in clusterIPMap)
+		{
+			IMacInfo	iMac = new IMacInfo();
+			
+			//reset seat and decrement row
+			if (cSeat == width)
+			{
+				row--;
+				seat = 1;
+				cSeat = 0;
+			}
+
+			iMac.ip = GetIp(ipPart);
+			iMac.name = "e" + clusterNumber + "r" + row + "p" + seat;
+			iMac.row = row;
+			iMac.seat = seat;
+			iMac.faceEntrance = (cSeat % 2) == 0;
+
+			iMac.worldPosition = new Vector3(cSeat * 2, 0, row * 2);
+
+			if (ipPart != noImac)
+			{
+				yield return iMac;
+				seat++;
+			}
+			
+			cSeat++;
+		}
+	}
+
+	static string GetIp(string ipPart)
+	{
+		return "10.1" + clusterNumber + "." + ipPart;
+	}
+
 	public static IEnumerable< string > GetIps()
 	{
 		foreach (var ipPart in clusterIPMap)
 			if (ipPart != noImac)
-				yield return "10.11." + ipPart;
+				yield return GetIp(ipPart);
 	}
 
 }

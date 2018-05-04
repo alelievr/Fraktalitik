@@ -18,19 +18,20 @@ public class ClusterGUI : MonoBehaviour
 
 	void Start ()
 	{
-		/*int		width = Cluster.clusterIPMap.GetLength(0);
+		int		width = Cluster.clusterIPMap.GetLength(0);
 		int		hieght = Cluster.clusterIPMap.GetLength(1);
 		
-		foreach (var ipPart in Cluster.clusterIPMap)
+		foreach (var iMac in Cluster.GetImacInfos())
 		{
 			var go = GameObject.Instantiate(clusterSeatPrefab, transform);
 			var imacGUI = go.GetComponent< ClusterIMacGUI >();
 
-			imacGUI.SetText(ipPart);
+			imacGUI.SetText(iMac.name);
+
+			go.transform.position = iMac.worldPosition;
 
 			clusterImacs.Add(imacGUI);
-		}*/
-		
+		}
 	}
 	
 	void Update ()

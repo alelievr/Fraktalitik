@@ -9,7 +9,8 @@
     "com.unity.analytics": "exclude",
     "com.unity.purchasing": "exclude",
     "com.unity.render-pipelines.high-definition": "1.1.5-preview",
-    "com.unity.render-pipelines.lightweight": "1.1.5-preview"
+    "com.unity.render-pipelines.lightweight": "1.1.5-preview",
+    "com.unity.progrids": "3.0.1-preview"
   },
   "testables": [
     "com.unity.collections",

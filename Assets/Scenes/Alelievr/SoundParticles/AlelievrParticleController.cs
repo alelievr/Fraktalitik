@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+using Random = UnityEngine.Random;
+
 public enum ParticleControllerType
 {
 	Life,
-	FireWorks
+	FireWorks,
+	Bubble,
 }
 
 [RequireComponent(typeof(ParticleSystem))]
@@ -28,13 +31,13 @@ public class AlelievrParticleController : MonoBehaviour
 	
     ParticleSystem.EmissionModule		emission;
     ParticleSystem.NoiseModule			noise;
-    ParticleSystem.ExternalForcesModule	force;
 	
 	float								originalEmission;
 	float								originalStrength;
-	float								originalScrollSpeed;
 
 	new ParticleSystem					particleSystem;
+
+    ParticleSystem.Particle[]			particles;
 
 	Dictionary< ParticleControllerType, Action > particleControllers = new Dictionary< ParticleControllerType, Action >();
 
@@ -46,21 +49,19 @@ public class AlelievrParticleController : MonoBehaviour
 		originalEmission = emission.rateOverTime.constant;
 
 		noise = particleSystem.noise;
-		originalScrollSpeed = noise.scrollSpeed.constant;
 		originalStrength = noise.strength.constant;
 
-		force = particleSystem.externalForces;
+		particles = new ParticleSystem.Particle[particleSystem.main.maxParticles];
 
 		//Init controllers:
 		particleControllers[ParticleControllerType.FireWorks] = UpdateFireworks;
 		particleControllers[ParticleControllerType.Life] = UpdateLife;
+		particleControllers[ParticleControllerType.Bubble] = UpdateBubble;
 	}
 	
 	void Update ()
 	{
 		smoothedThrottle = Mathf.SmoothDamp(smoothedThrottle, throttle, ref velocity, smoothTime, maxSpeed);
-
-		Debug.Log("smoothedThrottle: " + smoothedThrottle);
 
 		particleControllers[controllerType]();
 	}
@@ -73,5 +74,21 @@ public class AlelievrParticleController : MonoBehaviour
 	void UpdateLife()
 	{
 		noise.strength = Mathf.Max(smoothedThrottle * originalStrength * multiplier, 1);
+	}
+
+	void UpdateBubble()
+	{
+		float minDetectionPeak = .5f;
+
+		if (throttle < minDetectionPeak)
+			return ;
+
+		int particleCount = particleSystem.GetParticles(particles);
+
+		for (int i = 0; i < particleCount; i++)
+			if (Random.value < Mathf.InverseLerp(minDetectionPeak, 3, throttle))
+				particles[i].remainingLifetime = 0;
+		
+		particleSystem.SetParticles(particles, particleCount);
 	}
 }
