@@ -12,9 +12,9 @@ public class MasterServer : NetworkManager
 		StartServer();
 	}
 
-	public override void OnClientConnect(NetworkConnection conn)
+	public override void OnServerConnect(NetworkConnection conn)
 	{
-		Debug.Log("Client connected !");
+		NetworkServer.SetClientReady(conn);
 	}
 
 	void Update ()

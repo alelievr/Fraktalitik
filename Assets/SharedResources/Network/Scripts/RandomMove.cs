@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RandomMove : MonoBehaviour
 {
+	public float		speed = .5f;
+
 	void Start ()
 	{
 		
@@ -11,9 +13,8 @@ public class RandomMove : MonoBehaviour
 
 	void Update ()
 	{
-		float x = Mathf.PerlinNoise(Time.time, Time.time);
-		float z = Mathf.PerlinNoise(Time.time, -Time.time);
+		float t = Time.time * speed;
 
-		transform.Translate(new Vector3(x, 0, z));
+		transform.Translate(new Vector3(Mathf.Sin(t), 0, Mathf.Cos(t)) * .1f);
 	}
 }
