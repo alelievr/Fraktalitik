@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.4756141, g: 0.518334, b: 0.6037736, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: e8347ebce7be34d709c34664dea3d768, type: 2}
   m_HaloStrength: 0.5
@@ -51,7 +51,7 @@ LightmapSettings:
     m_IndirectOutputScale: 1
     m_AlbedoBoost: 1
     m_TemporalCoherenceThreshold: 1
-    m_EnvironmentLightingMode: 0
+    m_EnvironmentLightingMode: 1
     m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
@@ -90,7 +90,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -152,14 +152,19 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 1901166313968884, guid: 6c9a43971f7184648afc104750f0ae5d, type: 2}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 114053955431067150, guid: 6c9a43971f7184648afc104750f0ae5d,
+        type: 2}
+      propertyPath: m_UseWebSockets
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114053955431067150, guid: 6c9a43971f7184648afc104750f0ae5d,
         type: 2}
-      propertyPath: m_LogLevel
-      value: 2
+      propertyPath: m_ServerBindToIP
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1901166313968884, guid: 6c9a43971f7184648afc104750f0ae5d, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6c9a43971f7184648afc104750f0ae5d, type: 2}
@@ -386,13 +391,7 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114071883001997842, guid: 0a771ecefc7f9468bbe0712218aa2c90,
-        type: 2}
-      propertyPath: m_LogLevel
-      value: 2
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114164028719848428, guid: 0a771ecefc7f9468bbe0712218aa2c90, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0a771ecefc7f9468bbe0712218aa2c90, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1174815111

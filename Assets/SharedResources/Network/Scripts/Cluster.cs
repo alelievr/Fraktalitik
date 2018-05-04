@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using System;
 
-public class Cluster : MonoBehaviour 
+public static class Cluster
 {
 	public static string	clusterNumber = "1";
 	public static string	noImac = "--.--";
@@ -23,7 +25,15 @@ public class Cluster : MonoBehaviour
 		{"01.01", "01.02", "01.03", "01.04", "01.05", "01.06", "01.07", "--.--", "--.--", "--.--", "--.--", "--.--", "--.--", "--.--", "--.--", "--.--", "--.--", "--.--", "01.08", "01.09", "01.10", "01.11", "01.12", "01.13", "01.14"}, //r1
 	};
 
-	public static IEnumerable< IMacInfo > GetImacInfos()
+	public static Dictionary< string, IMacInfo >	iMacInfos = new Dictionary< string, IMacInfo >();
+
+	static Cluster()
+	{
+		//Load ImacInfo list
+		iMacInfos = GetImacInfos().ToDictionary(l => l.ip);
+	}
+
+	static IEnumerable< IMacInfo > GetImacInfos()
 	{
 		int		width = Cluster.clusterIPMap.GetLength(1);
 		int		row = 13;
@@ -62,7 +72,17 @@ public class Cluster : MonoBehaviour
 
 	static string GetIp(string ipPart)
 	{
-		return "10.1" + clusterNumber + "." + ipPart;
+		var s = ipPart.Split('.');
+		int r;
+		int p;
+
+		Int32.TryParse(s[0], out r);
+		Int32.TryParse(s[1], out p);
+
+		if (r == 0 || p == 0)
+			return null;
+
+		return "10.1" + clusterNumber + "." + r + "." + p;
 	}
 
 	public static IEnumerable< string > GetIps()

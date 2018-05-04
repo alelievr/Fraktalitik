@@ -19,9 +19,16 @@ public class ClusterGUI : MonoBehaviour
 
 	Dictionary< string, ClusterIMacGUI >	iMacs = new Dictionary< string, ClusterIMacGUI >();
 
+	public static ClusterGUI		instance;
+
+	private void Awake()
+	{
+		instance = this;
+	}
+
 	void Start ()
 	{
-		foreach (var iMac in Cluster.GetImacInfos())
+		foreach (var iMac in Cluster.iMacInfos.Values)
 		{
 			var go = GameObject.Instantiate(clusterSeatPrefab, transform);
 			var imacGUI = go.GetComponent< ClusterIMacGUI >();
@@ -41,8 +48,15 @@ public class ClusterGUI : MonoBehaviour
 	{
 		if (!iMacs.ContainsKey(ip))
 			return ;
+
+		Debug.Log("Update imac: " + status);
 		
 		iMacs[ip].SetBorderColor(clientStatusColors[status]);
+	}
+	
+	public void UpdateImacStatus(IMacInfo iMac)
+	{
+		UpdateImacStatus(iMac.ip, iMac.status);
 	}
 	
 	void Update ()

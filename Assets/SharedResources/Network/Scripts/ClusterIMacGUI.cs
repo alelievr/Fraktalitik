@@ -23,6 +23,7 @@ public class ClusterIMacGUI : MonoBehaviour
 
 	public void SetBorderColor(Color c)
 	{
+		Debug.Log("Color: " + c);
 		status.sharedMaterial.color = c;
 	}
 
