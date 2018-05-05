@@ -10,7 +10,7 @@ public static class Cluster
 	public static string	clusterNumber = "1";
 	public static string	noImac = "--.--";
 
-	public static string[,] clusterIPMap = {
+	public static string[,] clusterIPPartMap = {
 		{"13.01", "13.02", "13.03", "13.04", "13.05", "13.06", "13.07", "--.--", "--.--", "--.--", "--.--", "--.--", "--.--", "--.--", "--.--", "--.--", "--.--", "--.--", "13.08", "13.09", "13.10", "13.11", "13.12", "13.13", "13.14"}, //r13
 		{"12.01", "12.02", "12.03", "12.04", "12.05", "12.06", "12.07", "--.--", "12.08", "12.09", "12.10", "12.11", "12.12", "12.13", "12.14", "12.15", "12.16", "--.--", "12.17", "12.18", "12.19", "12.20", "12.21", "12.22", "12.23"}, //r12
 		{"11.01", "11.02", "11.03", "11.04", "11.05", "11.06", "11.07", "--.--", "11.08", "11.09", "11.10", "11.11", "11.12", "11.13", "11.14", "11.15", "11.16", "--.--", "11.17", "11.18", "11.19", "11.20", "11.21", "11.22", "11.23"}, //r11
@@ -26,26 +26,32 @@ public static class Cluster
 		{"01.01", "01.02", "01.03", "01.04", "01.05", "01.06", "01.07", "--.--", "--.--", "--.--", "--.--", "--.--", "--.--", "--.--", "--.--", "--.--", "--.--", "--.--", "01.08", "01.09", "01.10", "01.11", "01.12", "01.13", "01.14"}, //r1
 	};
 
-	public readonly static List< IMacInfo >								iMacInfos;
-	public readonly static Dictionary< string, IMacInfo >				iMacInfosByIp;
-	public readonly static Dictionary< NetworkConnection, IMacInfo >	iMacInfosByConnection;
+	public static int		rowCount = 11;
+
+	public readonly static List< IMacInfo >						iMacInfos;
+	public readonly static Dictionary< string, IMacInfo >		iMacInfosByIp;
+	public static Dictionary< NetworkConnection, IMacInfo >		iMacInfosByConnection;
 
 	static Cluster()
 	{
 		//Load ImacInfos
 		iMacInfos = GetImacInfos().ToList();
 		iMacInfosByIp = iMacInfos.ToDictionary(l => l.ip);
-		iMacInfosByConnection = iMacInfos.ToDictionary(l => l.connection);
+	}
+
+	public static void UpdateImacByConnectionDictionary()
+	{
+		iMacInfosByConnection = iMacInfos.Where(l => l.connection != null).ToDictionary(l => l.connection);
 	}
 
 	static IEnumerable< IMacInfo > GetImacInfos()
 	{
-		int		width = Cluster.clusterIPMap.GetLength(1);
+		int		width = Cluster.clusterIPPartMap.GetLength(1);
 		int		row = 13;
 		int		seat = 1;
 		int		cSeat = 0;
 
-		foreach (var ipPart in clusterIPMap)
+		foreach (var ipPart in clusterIPPartMap)
 		{
 			IMacInfo	iMac = new IMacInfo();
 			
@@ -75,7 +81,7 @@ public static class Cluster
 		}
 	}
 
-	static string GetIp(string ipPart)
+	public static string GetIp(string ipPart)
 	{
 		var s = ipPart.Split('.');
 		int r;
@@ -92,7 +98,7 @@ public static class Cluster
 
 	public static IEnumerable< string > GetIps()
 	{
-		foreach (var ipPart in clusterIPMap)
+		foreach (var ipPart in clusterIPPartMap)
 			if (ipPart != noImac)
 				yield return GetIp(ipPart);
 	}

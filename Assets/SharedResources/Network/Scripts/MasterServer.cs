@@ -36,6 +36,7 @@ public class MasterServer : NetworkManager
 		iMac.connection = conn;
 		iMac.status = ClientStatus.ConnectedToGroup;
 
+		Cluster.UpdateImacByConnectionDictionary();
 		ClusterGUI.instance.UpdateImacStatus(iMac);
 	}
 
