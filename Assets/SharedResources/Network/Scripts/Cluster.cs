@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
+using UnityEngine.Networking;
 
 public static class Cluster
 {
@@ -25,12 +26,16 @@ public static class Cluster
 		{"01.01", "01.02", "01.03", "01.04", "01.05", "01.06", "01.07", "--.--", "--.--", "--.--", "--.--", "--.--", "--.--", "--.--", "--.--", "--.--", "--.--", "--.--", "01.08", "01.09", "01.10", "01.11", "01.12", "01.13", "01.14"}, //r1
 	};
 
-	public static Dictionary< string, IMacInfo >	iMacInfos = new Dictionary< string, IMacInfo >();
+	public readonly static List< IMacInfo >								iMacInfos;
+	public readonly static Dictionary< string, IMacInfo >				iMacInfosByIp;
+	public readonly static Dictionary< NetworkConnection, IMacInfo >	iMacInfosByConnection;
 
 	static Cluster()
 	{
-		//Load ImacInfo list
-		iMacInfos = GetImacInfos().ToDictionary(l => l.ip);
+		//Load ImacInfos
+		iMacInfos = GetImacInfos().ToList();
+		iMacInfosByIp = iMacInfos.ToDictionary(l => l.ip);
+		iMacInfosByConnection = iMacInfos.ToDictionary(l => l.connection);
 	}
 
 	static IEnumerable< IMacInfo > GetImacInfos()

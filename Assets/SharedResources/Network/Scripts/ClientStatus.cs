@@ -9,4 +9,5 @@ public enum ClientStatus
 	ConnectedToGroup,
 	WaitingForGroup,
 	GroupServer,
+	Monitoring,
 }

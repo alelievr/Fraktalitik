@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class ClusterGUI : MonoBehaviour
+public class ClusterGUI : NetworkManager
 {
 	public GameObject		clusterSeatPrefab;
 
@@ -26,9 +27,16 @@ public class ClusterGUI : MonoBehaviour
 		instance = this;
 	}
 
+	public override void OnClientConnect(NetworkConnection conn)
+	{
+		Debug.Log("Client connected !");
+
+		client.Send(NetMessageType.UpdateStatus, new UpdateStatusMessage(ClientStatus.Monitoring));
+	}
+
 	void Start ()
 	{
-		foreach (var iMac in Cluster.iMacInfos.Values)
+		foreach (var iMac in Cluster.iMacInfos)
 		{
 			var go = GameObject.Instantiate(clusterSeatPrefab, transform);
 			var imacGUI = go.GetComponent< ClusterIMacGUI >();
