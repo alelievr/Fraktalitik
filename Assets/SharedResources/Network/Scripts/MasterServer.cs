@@ -100,6 +100,9 @@ public class MasterServer : NetworkManager
 		iMac.status = status;
 
 		ClusterGUI.instance.UpdateImacStatus(iMac);
+		
+		if (status == ClientStatus.ConnectedToGroup || status == ClientStatus.GroupServer)
+			ClusterGUI.instance.UpdateImacGroup(iMac, config.clusterGroups[iMac.groupIndex].color);
 	}
 
 	void HandleNonClusterClientMessage(NetworkMessage message, ClientStatus status)
