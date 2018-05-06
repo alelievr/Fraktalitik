@@ -11,4 +11,6 @@ public class ClusterGroupInfo
 	public string			sceneName;
 
 	public float			syncDelay;
+
+	public long				startTime;
 }

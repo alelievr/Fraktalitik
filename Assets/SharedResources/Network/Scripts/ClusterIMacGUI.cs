@@ -8,6 +8,7 @@ public class ClusterIMacGUI : MonoBehaviour
 	public MeshRenderer	status;
 	public MeshRenderer	group;
 	public TMP_Text		imacName;
+	public TMP_Text		statusText;
 
 	void Start ()
 	{
@@ -35,6 +36,11 @@ public class ClusterIMacGUI : MonoBehaviour
 	public void SetText(string text)
 	{
 		imacName.text = text;
+	}
+
+	public void SetStatus(string text)
+	{
+		statusText.text = text;
 	}
 
 	public void SetBlank()

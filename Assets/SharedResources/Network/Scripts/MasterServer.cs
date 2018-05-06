@@ -5,6 +5,8 @@ using UnityEngine.Networking;
 
 public class MasterServer : NetworkManager
 {
+	[Space]
+	public ClusterGroupConfig	config;
 
 	List< NetworkConnection >	nonClusterClients = new List< NetworkConnection >();
 	List< NetworkConnection >	monitoringClients = new List< NetworkConnection >();
@@ -18,15 +20,21 @@ public class MasterServer : NetworkManager
 		StartServer();
 	}
 
+	string		GetIpv4FromConnection(NetworkConnection connection)
+	{
+		return connection.address.Substring(connection.address.LastIndexOf(':') + 1);
+	}
+
 	public override void OnServerConnect(NetworkConnection conn)
 	{
 		NetworkServer.SetClientReady(conn);
 
-		var ipv4 = conn.address.Substring(conn.address.LastIndexOf(':') + 1);
+		string ipv4 = GetIpv4FromConnection(conn);
 
 		if (!Cluster.iMacInfosByIp.ContainsKey(ipv4))
 		{
 			Debug.Log("Connected client " + ipv4 + " is not in the cluster !");
+			nonClusterClients.Add(conn);
 
 			return ;
 		}
@@ -34,10 +42,44 @@ public class MasterServer : NetworkManager
 		var iMac = Cluster.iMacInfosByIp[ipv4];
 
 		iMac.connection = conn;
-		iMac.status = ClientStatus.ConnectedToGroup;
+		iMac.status = ClientStatus.Available;
 
 		Cluster.UpdateImacByConnectionDictionary();
 		ClusterGUI.instance.UpdateImacStatus(iMac);
+
+		var group = config.iMacGroups.Find(i => i.ip == ipv4);
+
+		if (group == null)
+		{
+			Debug.LogError("Can't find group for iMac: " + ipv4);
+			return ;
+		}
+
+		iMac.groupIndex = group.groupIndex;
+
+		var groupMessage = new GroupMessage(config.clusterGroups[group.groupIndex]);
+		NetworkServer.SendToClient(conn.connectionId, NetMessageType.Group, groupMessage);
+	}
+
+	public override void OnServerDisconnect(NetworkConnection conn)
+	{
+		IMacInfo	iMac;
+
+		Cluster.iMacInfosByConnection.TryGetValue(conn, out iMac);
+
+		if (iMac != null)
+		{
+			iMac.connection = null;
+			iMac.status = ClientStatus.Disconnected;
+
+			Cluster.UpdateImacByConnectionDictionary();
+			ClusterGUI.instance.UpdateImacStatus(iMac);
+
+			return ;
+		}
+
+		nonClusterClients.Remove(conn);
+		monitoringClients.Remove(conn);
 	}
 
 	public void ClientUpdateStatusCallback(NetworkMessage message)
@@ -55,7 +97,9 @@ public class MasterServer : NetworkManager
 		}
 
 		//Cluster client message:
-		Cluster.iMacInfosByConnection[message.conn].status = status;
+		iMac.status = status;
+
+		ClusterGUI.instance.UpdateImacStatus(iMac);
 	}
 
 	void HandleNonClusterClientMessage(NetworkMessage message, ClientStatus status)
@@ -79,9 +123,5 @@ public class MasterServer : NetworkManager
 				Debug.LogError("Unknow message type: " + message.msgType);
 				break ;
 		}
-	}
-
-	void Update ()
-	{
 	}
 }

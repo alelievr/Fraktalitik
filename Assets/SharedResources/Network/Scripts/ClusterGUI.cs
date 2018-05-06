@@ -13,6 +13,7 @@ public class ClusterGUI : NetworkManager
 	{
 		{ClientStatus.Unknown, Colors.gray70},
 		{ClientStatus.Disconnected, Colors.red2},
+		{ClientStatus.Available, Colors.yellow2},
 		{ClientStatus.WaitingForGroup, Colors.orange},
 		{ClientStatus.ConnectedToGroup, Colors.green2},
 		{ClientStatus.GroupServer, Colors.purple1},
@@ -41,6 +42,8 @@ public class ClusterGUI : NetworkManager
 			var go = GameObject.Instantiate(clusterSeatPrefab, transform);
 			var imacGUI = go.GetComponent< ClusterIMacGUI >();
 
+			go.transform.rotation = (iMac.faceEntrance) ? Quaternion.identity : Quaternion.Euler(0, 180, 0);
+
 			imacGUI.SetText(iMac.name);
 
 			go.transform.position = iMac.worldPosition;
@@ -60,11 +63,17 @@ public class ClusterGUI : NetworkManager
 		Debug.Log("Update imac: " + status);
 		
 		iMacs[ip].SetBorderColor(clientStatusColors[status]);
+		iMacs[ip].SetStatus(status.ToString());
 	}
 	
 	public void UpdateImacStatus(IMacInfo iMac)
 	{
 		UpdateImacStatus(iMac.ip, iMac.status);
+	}
+
+	public void UpdateImacGroup(IMacInfo iMac, Color groupColor)
+	{
+		iMacs[iMac.ip].SetGroupColor(groupColor);
 	}
 	
 	void Update ()

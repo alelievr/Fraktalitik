@@ -5,4 +5,5 @@ using UnityEngine;
 public class NetMessageType
 {
 	public const short UpdateStatus = 1000;
+	public const short Group		= 1001;
 }

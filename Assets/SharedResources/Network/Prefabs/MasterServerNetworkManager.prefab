@@ -55,7 +55,7 @@ MonoBehaviour:
   m_NetworkPort: 7777
   m_ServerBindToIP: 0
   m_ServerBindAddress: 
-  m_NetworkAddress: 10.11.11.2
+  m_NetworkAddress: 10.11.10.6
   m_DontDestroyOnLoad: 1
   m_RunInBackground: 1
   m_ScriptCRCCheck: 1
@@ -122,6 +122,7 @@ MonoBehaviour:
   matchSize: 4
   isNetworkActive: 0
   matchMaker: {fileID: 0}
+  config: {fileID: 11400000, guid: 262b5096756994e848e01c9a42829186, type: 2}
 --- !u!114 &114842353986177842
 MonoBehaviour:
   m_ObjectHideFlags: 1

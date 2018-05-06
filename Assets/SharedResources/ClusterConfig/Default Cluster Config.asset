@@ -16,17 +16,17 @@ MonoBehaviour:
     color: {r: 0.6440856, g: 0, b: 0.8018868, a: 1}
     sceneName: 
     syncDelay: 0
-  - name: Raymarching
-    color: {r: 0.08253344, g: 0.5283019, b: 0, a: 1}
-    sceneName: 
+  - name: fegweg
+    color: {r: 0.4339623, g: 0, b: 0, a: 1}
+    sceneName: Level0
     syncDelay: 0
   - name: Particles
     color: {r: 1, g: 0.9696857, b: 0, a: 1}
     sceneName: 
-    syncDelay: 0
-  - name: fegweg
-    color: {r: 0.4339623, g: 0, b: 0, a: 1}
-    sceneName: Level0
+    syncDelay: 10
+  - name: Raymarching
+    color: {r: 0.08253344, g: 0.5283019, b: 0, a: 1}
+    sceneName: 
     syncDelay: 0
   iMacGroups:
   - ip: 10.11.13.1

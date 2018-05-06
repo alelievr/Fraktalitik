@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Networking.Match;
+using UnityEngine.SceneManagement;
 
 public class Client : NetworkManager
 {
@@ -31,6 +32,19 @@ public class Client : NetworkManager
 		{
 			Debug.Log("Starting new client connection");
 			StartClient();
+
+			client.RegisterHandler(NetMessageType.Group, GroupMessageCallback);
 		}
+	}
+
+	void GroupMessageCallback(NetworkMessage message)
+	{
+		var groupInfo = message.ReadMessage< GroupMessage >().groupInfo;
+
+		Debug.Log("Client changed to group: " + groupInfo.name + " | " + groupInfo.sceneName);
+		
+		SceneManager.LoadScene(groupInfo.sceneName);
+
+		client.Send(NetMessageType.UpdateStatus, new UpdateStatusMessage(ClientStatus.ConnectedToGroup));
 	}
 }

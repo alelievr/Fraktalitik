@@ -23,9 +23,4 @@ public class ClusterGroupConfig : ScriptableObject
 
 	[SerializeField]
 	public List< ImacGroupId >		iMacGroups = new List< ImacGroupId >();
-
-	private void OnEnable()
-	{
-		Debug.Log("Imac coutn: " + iMacGroups.Count);
-	}
 }
